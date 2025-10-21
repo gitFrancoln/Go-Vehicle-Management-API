@@ -41,8 +41,8 @@ a {
 
 button {
   border-radius: 20px;
-  border: 1px solid #3ab397;
-  background-color: #3ab397;
+  border: 1px solid #1a3d66;
+  background-color: #1a3d66;
   color: #fff;
   font-size: 12px;
   font-weight: bold;
@@ -132,8 +132,8 @@ input {
 }
 
 .overlay {
-  background: #3ab397;
-  background: linear-gradient(to right, #3ab397, #32a68d);
+  background: #1a3d66;
+  background: linear-gradient(to right, #1a3d66, #1a3d66);
   color: #ffffff;
   position: relative;
   left: -100%;
@@ -184,7 +184,7 @@ input {
 
 ion-icon {
   font-size: 20px;
-  color: #3ab397;
+  color: #1a3d66;
 }
 
 /* ANIMACIONES */
