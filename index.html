@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario de Contacto</title>
+    <link rel="stylesheet" href="style.css" />
+      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <span class="big-circle"></span>
+      <img src="img/shape.png" class="square" alt="" />
+      <div class="form">
+        <div class="contact-info">
+          <h3 class="title">Pongámonos en contacto</h3>
+          <p class="text">
+            Si tenés alguna consulta o comentario, no dudes en escribirnos. ¡Te responderemos lo antes posible!
+          </p>
+
+          <div class="info">
+            <div class="information">
+              <ion-icon name="location-outline" class="icon"></ion-icon>
+              <p>Loyola 501, C1414 Cdad. Autónoma de Buenos Aires</p>
+            </div>
+            <div class="information">
+              <ion-icon name="mail-outline" class="icon"></ion-icon>
+              <p>VehículoMarket@gmail.com</p>
+            </div>
+            <div class="information">
+              <ion-icon name="call-outline" class="icon"></ion-icon>
+              <p> 4301-9964</p>
+            </div>
+          </div>
+
+          <div class="social-media">
+            <p>Conectate con nosotros:</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" class="social" target="_blank">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+                <a href="https://www.instagram.com" class="social" target="_blank">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+                <a href="https://twitter.com" class="social" target="_blank">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+                <a href="https://www.linkedin.com" class="social" target="_blank">
+                  <ion-icon name="logo-linkedin"></ion-icon>
+                </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <span class="circle one"></span>
+          <span class="circle two"></span>
+
+          <form action="#" autocomplete="off">
+            <h3 class="title">Contactanos</h3>
+            <div class="input-container">
+              <input type="text" name="name" class="input" />
+              <label for="">Nombre</label>
+              <span>Nombre</span>
+            </div>
+            <div class="input-container">
+              <input type="email" name="email" class="input" />
+              <label for="">Correo electrónico</label>
+              <span>Correo electrónico</span>
+            </div>
+            <div class="input-container">
+              <input type="tel" name="phone" class="input" />
+              <label for="">Teléfono</label>
+              <span>Teléfono</span>
+            </div>
+            <div class="input-container textarea">
+              <textarea name="message" class="input"></textarea>
+              <label for="">Mensaje</label>
+              <span>Mensaje</span>
+            </div>
+            <input type="submit" value="Enviar" class="btn" />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
