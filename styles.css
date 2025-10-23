@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #f6f8fb;
+  color: #222;
+}
+
+header {
+  background-color: #1d4b72;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 40px;
+  color: white;
+  flex-wrap: wrap;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 45px;
+  height: 45px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.search-container input {
+  width: 400px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-container button {
+  background-color: #1d4b72;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background-color: #163a58;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 0 40px 60px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  text-align: center;
+  padding-bottom: 15px;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card h2 {
+  background-color: #1d4b72;
+  color: white;
+  padding: 20px 0;
+  font-size: 20px;
+}
+
+.card p {
+  margin: 5px 0;
+}
+
+.price {
+  color: #0056b3;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.details, .contact {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.details {
+  background-color: #e6e6e6;
+}
+
+.contact {
+  background-color: #1d4b72;
+  color: white;
+}
+
+.contact:hover {
+  background-color: #163a58;
+}
+
+.pagination {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.pagination button {
+  border: none;
+  background-color: #e6e6e6;
+  padding: 8px 12px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #ccc;
+}
+
+footer {
+  background-color: #1d4b72;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+}

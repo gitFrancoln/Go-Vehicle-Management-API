@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VehiculoMarket</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="raw.png" alt="Logo VehiculoMarket" class="logo">
+      <h1>VehiculoMarket</h1>
+    </div>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Consultar Vehículos</a>
+      <a href="#">Mi Perfil</a>
+      <a href="#">Cerrar Sesión</a>
+      <a href="#" class="cart">🛒 Carrito (0)</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Buscar vehículos...">
+      <button onclick="buscarVehiculos()">Buscar</button>
+    </div>
+
+    <section id="cardsContainer" class="cards-container"></section>
+
+    <div class="pagination">
+      <button id="prevPage" class="prev">Anterior</button>
+      <span id="pageIndicator">1</span>
+      <button id="nextPage" class="next">Siguiente</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 VehiculoMarket. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
