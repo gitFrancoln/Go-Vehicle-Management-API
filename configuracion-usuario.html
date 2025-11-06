@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehiculo Market - Configuración</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="logo">
+                    <img src="./img/image.png" alt="VehiculoMarket Logo" class="logo-img">
+                    <span class="logo-text">VehiculoMarket</span>
+                </div>
+            </div>
+            
+            <div class="nav-center">
+                <a href="#" class="nav-link">Inicio</a>
+                <a href="#" class="nav-link">Consultar Vehiculos</a>
+                <a href="#" class="nav-link">Mi Perfil</a>
+                <a href="#" class="nav-link logout">Cerrar Sesión</a>
+            </div>
+            
+            <div class="nav-right">
+                <div class="cart-icon">
+                    <span>🛒 carrito (0)</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="menu-item active" data-section="profile">
+                <i>👤</i> Información de Perfil
+            </div>
+            <div class="menu-item" data-section="subscriptions">
+                <i>📋</i> Suscripciones
+            </div>
+            <div class="menu-item" data-section="payment">
+                <i>💳</i> Métodos de Pago
+            </div>
+            <div class="menu-item" data-section="address">
+                <i>📍</i> Dirección
+            </div>
+            <div class="menu-item" data-section="privacy">
+                <i>🔒</i> Privacidad
+            </div>
+            <div class="menu-item" data-section="notifications">
+                <i>🔔</i> Notificaciones
+            </div>
+            <div class="menu-item" data-section="purchases">
+                <i>🛒</i> Compras
+            </div>
+            <div class="menu-item" data-section="billing">
+                <i>🧾</i> Facturación
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <!-- Sección de Información de Perfil -->
+            <div class="section active" id="profile">
+                <div class="user-header">
+                    <div class="profile-picture">
+                        <img id="profile-img" src="" alt="Foto de perfil">
+                        <div class="profile-picture-upload" id="upload-btn">+</div>
+                        <input type="file" id="file-input" accept="image/*" style="display: none;">
+                    </div>
+                    <div class="user-info">
+                        <h1 id="user-name">Matías Fazio</h1>
+                        <p id="user-email">matias.c.fazio@gmail.com</p>
+                    </div>
+                </div>
+                
+                <h2 class="section-title">Información Personal</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first-name">Nombre</label>
+                        <input type="text" id="first-name" value="Matías">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Apellido</label>
+                        <input type="text" id="last-name" value="Fazio">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" value="matias.c.fazio@gmail.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input type="tel" id="phone" value="+54 11 1234-5678">
+                </div>
+                
+                <div class="form-group">
+                    <label for="birthdate">Fecha de Nacimiento</label>
+                    <input type="date" id="birthdate" value="1990-01-01">
+                </div>
+                
+                <div class="btn-container">
+                    <button class="btn btn-secondary">Cancelar</button>
+                    <button class="btn" id="save-profile">Guardar Cambios</button>
+                </div>
+            </div>
+            
+           
+            <!-- Sección de Suscripciones -->
+<div class="section" id="subscriptions">
+    <h2 class="section-title">Suscripciones</h2>
+    
+    <div class="subscription-current">
+        <div class="current-plan">
+            <h3>Plan Actual</h3>
+            <div class="plan-card free">
+                <div class="plan-info">
+                    <h4>Plan Free</h4>
+                    <p>• Publicar hasta 3 vehículos</p>
+                    <p>• Búsqueda básica de vehículos</p>
+                    <p>• Contacto limitado con vendedores</p>
+                    <p class="plan-price">Gratis</p>
+                </div>
+                <div class="plan-status active">Activo</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="subscription-upgrade">
+        <h3>Planes para Empresas</h3>
+        <div class="plans-list">
+            <div class="plan-item">
+                <div class="plan-header">
+                    <h4>Pro</h4>
+                    <span class="plan-price">$350.00 /mes</span>
+                </div>
+                <ul class="plan-features">
+                    <li>✓ Límites estratégicos</li>
+                    <li>✓ Anexos de usuarios técnicos</li>
+                    <li>✓ Aportes en segundo plano</li>
+                    <li>✓ Versiones de contenido máximas</li>
+                </ul>
+            </div>
+            
+            <div class="plan-item">
+                <div class="plan-header">
+                    <h4>Pro+</h4>
+                    <span class="plan-price">$599.00 /mes</span>
+                </div>
+                <ul class="plan-features">
+                    <li>✓ Todo lo de Pro</li>
+                    <li>✓ Miliparencia AL</li>
+                    <li>✓ Si uno de sus dedos s.t.</li>
+                    <li>✓ Anexos peculiares e actualizaciones</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <button class="btn" id="go-to-subscriptions">Ver Planes y Contratar</button>
+        </div>
+    </div>
+</div>
+            
+            <!-- Sección de Métodos de Pago -->
+            <div class="section" id="payment">
+                <h2 class="section-title">Métodos de Pago</h2>
+                
+                <div class="empty-state">
+                    <div class="empty-icon">💳</div>
+                    <h3>No hay métodos de pago guardados</h3>
+                    <p>Agrega un método de pago para realizar compras más rápido</p>
+                </div>
+                
+                <div class="btn-container">
+                    <button class="btn">Agregar Método de Pago</button>
+                </div>
+            </div>
+            
+            <!-- Sección de Dirección -->
+            <div class="section" id="address">
+                <h2 class="section-title">Direcciones</h2>
+                
+                <div class="empty-state">
+                    <div class="empty-icon">📍</div>
+                    <h3>No hay direcciones guardadas</h3>
+                    <p>Agrega una dirección para facilitar tus compras y ventas</p>
+                </div>
+                
+                <div class="btn-container">
+                    <button class="btn">Agregar Dirección</button>
+                </div>
+            </div>
+            
+            <!-- Sección de Privacidad -->
+            <div class="section" id="privacy">
+                <h2 class="section-title">Privacidad</h2>
+                
+                <p>Controla cómo protegemos tu información y cómo la utilizamos para mejorar tu experiencia.</p>
+                
+                <div class="privacy-options">
+                    <div class="privacy-item">
+                        <label>
+                            <input type="checkbox" checked>
+                            Permitir que otros usuarios me encuentren por email
+                        </label>
+                    </div>
+                    
+                    <div class="privacy-item">
+                        <label>
+                            <input type="checkbox" checked>
+                            Compartir información con socios de marketing
+                        </label>
+                    </div>
+                    
+                    <div class="privacy-item">
+                        <label>
+                            <input type="checkbox">
+                            Mostrar mi perfil en resultados de búsqueda
+                        </label>
+                    </div>
+                    
+                    <div class="privacy-item">
+                        <label>
+                            <input type="checkbox" checked>
+                            Enviar ofertas personalizadas basadas en mi actividad
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="btn-container">
+                    <button class="btn">Guardar Preferencias</button>
+                </div>
+            </div>
+            
+            <!-- Sección de Notificaciones -->
+            <div class="section" id="notifications">
+                <h2 class="section-title">Notificaciones</h2>
+                
+                <p>Elige qué tipo de notificaciones quieres recibir y cómo.</p>
+                
+                <div class="notification-item">
+                    <div>
+                        <h3>Notificaciones por Email</h3>
+                        <p>Recibir actualizaciones importantes por correo electrónico</p>
+                    </div>
+                    <div class="toggle-container">
+                        <div class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="notification-item">
+                    <div>
+                        <h3>Notificaciones Push</h3>
+                        <p>Recibir notificaciones en tu dispositivo</p>
+                    </div>
+                    <div class="toggle-container">
+                        <div class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="notification-item">
+                    <div>
+                        <h3>Ofertas y Promociones</h3>
+                        <p>Recibir ofertas especiales y descuentos</p>
+                    </div>
+                    <div class="toggle-container">
+                        <div class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="notification-item">
+                    <div>
+                        <h3>Actualizaciones de Vehículos</h3>
+                        <p>Recibir notificaciones sobre vehículos que te interesan</p>
+                    </div>
+                    <div class="toggle-container">
+                        <div class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="btn-container">
+                    <button class="btn">Guardar Configuración</button>
+                </div>
+            </div>
+            
+            <!-- Sección de Compras -->
+            <div class="section" id="purchases">
+                <h2 class="section-title">Historial de Compras</h2>
+                
+                <div class="empty-state">
+                    <div class="empty-icon">🚗</div>
+                    <h3>No hay historial de compras</h3>
+                    <p>Cuando compres vehículos, aparecerán aquí</p>
+                </div>
+            </div>
+            
+            <!-- Sección de Facturación -->
+            <div class="section" id="billing">
+                <h2 class="section-title">Facturación</h2>
+                
+                <div class="empty-state">
+                    <div class="empty-icon">🧾</div>
+                    <h3>No hay facturación activa</h3>
+                    <p>No tienes ningún plan activo en este momento</p>
+                </div>
+                
+                <div class="btn-container">
+                    <button class="btn">Ver Planes Disponibles</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2025 VehiculoMarket Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
