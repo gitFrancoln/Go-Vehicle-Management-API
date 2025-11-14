@@ -1,8 +1,8 @@
 package main
 
 import (
-	"tpIRSO/app"
 	"tpIRSO/internal/config"
+	app "tpIRSO/src/appp"
 )
 
 func main() {
