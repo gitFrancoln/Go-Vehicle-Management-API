@@ -1,13 +1,8 @@
 package main
 
-import (
-	"tpIRSO/internal/config"
-	app "tpIRSO/src/appp"
-)
+import "tpIRSO/app"
 
 func main() {
-	config.LoadConfig()
-	app := app.NewApp()
-
-	app.Start(config.Env.Port)
+	application := app.NewApp()
+	application.Start("10000") // Render expone el puerto dinámico, pero 10000 es el que usa internamente
 }
