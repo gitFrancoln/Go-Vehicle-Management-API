@@ -23,11 +23,15 @@ func LoadConfig() {
 
 	rootDir := findProjectRoot()
 	envPath := filepath.Join(rootDir, ".env")
-
-	// Cargar el archivo .env
-	err := godotenv.Load(envPath)
-	if err != nil {
-		log.Fatalf("Error loading .env file: %v", err)
+	// Cargar .env solo si existe (local)
+	if _, err := os.Stat(envPath); err == nil {
+		log.Println("Loading .env file...")
+		if loadErr := godotenv.Load(envPath); loadErr != nil {
+			log.Println("⚠️ Error loading .env:", loadErr)
+		}
+	} else {
+		// Modo producción (Render/Railway)
+		log.Println(".env not found — running with environment variables (Render/Railway)")
 	}
 
 	Env = &Config{
