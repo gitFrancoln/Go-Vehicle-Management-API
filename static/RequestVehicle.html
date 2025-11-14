@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard - VehículoMarket</title>
+        <link rel="stylesheet" href="/static/RequestVehicle.css" />
+    </head>
+    <body>
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <img
+                        src="/static/images/animal (2).png"
+                        alt="VehículoMarket Logo"
+                        class="logo-image"
+                    />
+                    <span>VehículoMarket</span>
+                </div>
+                <nav class="nav-menu">
+                    <a href="/static/Home.html" class="nav-item">Inicio</a>
+                    <a href="/static/RequestVehicle.html" class="nav-item"
+                        >Consultar Vehículos</a
+                    >
+                    <a href="/static/Home.html" class="nav-item"
+                        >Sobre Nosotros</a
+                    >
+                    <a href="#" class="nav-item">Mi Perfil</a>
+                    <a href="#" class="nav-item">Cerrar Sesión</a>
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container">
+            <section class="dashboard-section">
+                <h2 class="section-title">Vehículos Disponibles</h2>
+
+                <!-- Lista de vehículos (se cargará dinámicamente desde el backend) -->
+                <div class="vehicles-list">
+                    <p
+                        style="
+                            text-align: center;
+                            width: 100%;
+                            padding: 40px;
+                            color: #666;
+                        "
+                    >
+                        🔄 Cargando vehículos...
+                    </p>
+                </div>
+
+                <!-- Paginación (se generará dinámicamente) -->
+                <div class="pagination"></div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <p>
+                    &copy; 2025 VehículoMarket. Todos los derechos reservados.
+                </p>
+            </div>
+        </footer>
+
+        <script src="/static/RequestVehicle.js"></script>
+    </body>
+</html>

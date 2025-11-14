@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>VehículoMarket - Tu próximo auto, a un clic</title>
+        <link rel="stylesheet" href="Home.css" />
+    </head>
+    <body>
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <span>VehicleMarket</span>
+                    </div>
+                    <nav class="nav">
+                        <a href="#inicio">Inicio</a>
+                        <a href="#productos">Productos</a>
+                        <a href="#acerca">Acerca de</a>
+                        <a href="login.html">
+                            <button class="btn-login">Iniciar Sesión</button></a
+                        >
+                    </nav>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#inicio">Inicio</a>
+            <a href="#productos">Productos</a>
+            <a href="#acerca">Acerca de</a>
+            <a href="static/contact">Contacto</a>
+            <button class="btn-login">Iniciar Sesión</button>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero fade-in-section" id="inicio">
+            <div class="hero-video-background">
+                <video autoplay muted loop playsinline>
+                    <source src="/images/video.mp4" type="video/mp4" />
+                    Tu navegador no soporta el video.
+                </video>
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Tu próximo auto, a un clic</h1>
+                    <p>
+                        Encuentra el vehículo perfecto para ti en nuestra amplia
+                        selección de autos nuevos y usados
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="/static/RequestVehicle.html"
+                            ><button class="btn-primary">
+                                Ver Catálogo
+                            </button></a
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products fade-in-section" id="productos">
+            <div class="container">
+                <h2 class="section-title">Productos Destacados</h2>
+                <div class="products-grid products-container">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img
+                                src="/images/yarisRs.jpg"
+                                alt="Toyota Corolla"
+                            />
+                        </div>
+                        <div class="product-info">
+                            <h3>Toyota Yaris</h3>
+                            <p class="product-description">
+                                Elegante y confortable, perfecto para la ciudad
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="/images/honda.jpg" alt="Honda CR-V" />
+                        </div>
+                        <div class="product-info">
+                            <h3>Honda CR-V</h3>
+                            <p class="product-description">
+                                Espacioso y versátil para toda la familia
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="/images/ventogli.jpg" alt="Vento" />
+                        </div>
+                        <div class="product-info">
+                            <h3>Vento GLI</h3>
+                            <p class="product-description">
+                                Potencia y estilo en cada curva
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="view-all-container">
+                    <a href="/static/RequestVehicle.html" class="view-all-link">
+                        Ver autos
+                        <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about fade-in-section" id="acerca">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Quiénes Somos</h2>
+                        <p>
+                            En VehículoMarket, nos dedicamos a conectar a las
+                            personas con el vehículo de sus sueños. Con más de
+                            10 años de experiencia en el mercado automotriz,
+                            ofrecemos una amplia selección de vehículos nuevos y
+                            usados de las mejores marcas.
+                        </p>
+                        <p>
+                            Nuestro compromiso es brindar transparencia, calidad
+                            y el mejor servicio al cliente. Cada vehículo en
+                            nuestro inventario pasa por rigurosas inspecciones
+                            para garantizar tu satisfacción y seguridad.
+                        </p>
+                        <a href="contact.html">
+                            <button class="btn-primary">Contactanos</button>
+                        </a>
+                    </div>
+                    <div class="about-image">
+                        <img
+                            src="/images/enterprise.jpg"
+                            alt="Nuestro showroom"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer" id="contacto">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>VehicleMarket</h3>
+                        <p>Tu próximo auto, a un clic</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Enlaces Rápidos</h4>
+                        <ul>
+                            <li><a href="#inicio">Inicio</a></li>
+                            <li><a href="#productos">Productos</a></li>
+                            <li><a href="#acerca">Acerca de</a></li>
+                            <li><a href="#contacto">Contacto</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Contacto</h4>
+                        <ul>
+                            <li>Email: info@vehiculomarket.com</li>
+                            <li>Teléfono: +1 234 567 890</li>
+                            <li>Dirección: Av. Principal 123</li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Síguenos</h4>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook">FB</a>
+                            <a href="#" aria-label="Twitter">TW</a>
+                            <a href="#" aria-label="Instagram">IG</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>
+                        &copy; 2025 VehículoMarket. Todos los derechos
+                        reservados.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Cart Notification -->
+        <div class="cart-notification" id="cartNotification">
+            <p id="cartMessage"></p>
+        </div>
+
+        <script src="Home.js"></script>
+    </body>
+</html>

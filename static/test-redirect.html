@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Redirección</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #3ab397;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background-color: #2a9077;
+        }
+        .log {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .log-entry {
+            padding: 5px;
+            margin: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
+        .info { color: #17a2b8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test de Redirección - VehículoMarket</h1>
+
+        <p>Esta página te ayuda a probar la redirección después del login.</p>
+
+        <div>
+            <button onclick="testRedirect1()">Test 1: window.location.href</button>
+            <button onclick="testRedirect2()">Test 2: window.location.replace</button>
+            <button onclick="testRedirect3()">Test 3: Con setTimeout</button>
+        </div>
+
+        <div>
+            <button onclick="checkLocalStorage()">Verificar localStorage</button>
+            <button onclick="clearLocalStorage()">Limpiar localStorage</button>
+            <button onclick="testLogin()">Simular Login</button>
+        </div>
+
+        <div class="log" id="log">
+            <div class="log-entry info">Logs aparecerán aquí...</div>
+        </div>
+    </div>
+
+    <script>
+        function addLog(message, type = 'info') {
+            const log = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `${new Date().toLocaleTimeString()} - ${message}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+            console.log(message);
+        }
+
+        function testRedirect1() {
+            addLog('Probando redirección con window.location.href...', 'info');
+            setTimeout(() => {
+                window.location.href = '/static/Home.html';
+            }, 1000);
+        }
+
+        function testRedirect2() {
+            addLog('Probando redirección con window.location.replace...', 'info');
+            setTimeout(() => {
+                window.location.replace('/static/Home.html');
+            }, 1000);
+        }
+
+        function testRedirect3() {
+            addLog('Probando redirección con setTimeout de 100ms...', 'info');
+            setTimeout(() => {
+                window.location.href = '/static/Home.html';
+            }, 100);
+        }
+
+        function checkLocalStorage() {
+            const user = localStorage.getItem('user');
+            if (user) {
+                addLog('Usuario encontrado en localStorage: ' + user, 'success');
+                try {
+                    const userData = JSON.parse(user);
+                    addLog('Datos del usuario: ID=' + userData.ID + ', Email=' + userData.Email, 'info');
+                } catch (e) {
+                    addLog('Error al parsear usuario: ' + e.message, 'error');
+                }
+            } else {
+                addLog('No hay usuario en localStorage', 'error');
+            }
+        }
+
+        function clearLocalStorage() {
+            localStorage.removeItem('user');
+            addLog('localStorage limpiado', 'info');
+        }
+
+        async function testLogin() {
+            addLog('Iniciando test de login...', 'info');
+
+            const email = prompt('Ingresa tu email:');
+            const password = prompt('Ingresa tu password:');
+
+            if (!email || !password) {
+                addLog('Test cancelado', 'error');
+                return;
+            }
+
+            try {
+                addLog('Enviando petición a /api/login...', 'info');
+                const response = await fetch('http://localhost:8080/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_email: email,
+                        user_password: password
+                    }),
+                });
+
+                addLog('Response status: ' + response.status, 'info');
+
+                const data = await response.json();
+                addLog('Response data: ' + JSON.stringify(data), 'info');
+
+                if (response.ok) {
+                    addLog('✅ Login exitoso!', 'success');
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    addLog('Usuario guardado en localStorage', 'success');
+                    addLog('Redirigiendo en 2 segundos...', 'info');
+
+                    setTimeout(() => {
+                        window.location.replace('/static/Home.html');
+                    }, 2000);
+                } else {
+                    addLog('❌ Error en login: ' + data.error, 'error');
+                }
+            } catch (err) {
+                addLog('⚠️ Error de conexión: ' + err.message, 'error');
+            }
+        }
+
+        // Log inicial
+        addLog('Página de test cargada correctamente', 'success');
+        addLog('Servidor backend debe estar en http://localhost:8080', 'info');
+    </script>
+</body>
+</html>

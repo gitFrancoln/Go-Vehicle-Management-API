@@ -31,6 +31,10 @@ type App struct {
 	VehicleRepo    repositories.VehicleRepo
 	VehicleService *services.VehicleService
 
+	ContactHandler *handlers.ContactHandler
+	ContactRepo    repositories.ContactRepository
+	ContactService *services.ContactService
+
 	Server *http.Server
 }
 
@@ -42,21 +46,24 @@ func NewApp() *App {
 		logger.Fatal("Failed to connect to database: ", err)
 	}
 
-	err = db.AutoMigrate(&models.Vehicle{}, &models.User{})
+	err = db.AutoMigrate(&models.Vehicle{}, &models.User{}, &models.Contact{})
 	if err != nil {
 		logger.Fatal("Failed to migrate database: ", err)
 	}
 
-	fmt.Println("Tablas vehicles y users creadas exitosamente!")
+	fmt.Println("Tablas vehicles, users y contacts creadas exitosamente!")
 
 	vehicleRepo := repositories.NewRepoVehicle(db, logger)
 	userRepo := repositories.NewRepoUser(db, logger)
+	contactRepo := repositories.NewContactRepository(db, logger)
 
 	vehicleService := services.NewVehicleService(vehicleRepo)
 	userService := services.NewUserService(userRepo)
+	contactService := services.NewContactService(contactRepo)
 
 	vehicleHandler := handlers.NewVehicleHandler(*vehicleService)
 	userHandler := handlers.NewUserHandler(userService)
+	contactHandler := handlers.NewContactHandler(contactService)
 
 	router := gin.Default()
 
@@ -73,10 +80,28 @@ func NewApp() *App {
 		c.Next()
 	})
 	cwd, _ := os.Getwd()
-	staticPath := filepath.Join(cwd, "static") // tu carpeta con index.html, CSS y JS
+	staticPath := filepath.Join(cwd, "static") // tu carpeta con archivos estáticos
 	router.Static("/static", staticPath)       // para acceder a CSS/JS desde HTML
+
+	// Servir imágenes desde /images
+	router.Static("/images", filepath.Join(staticPath, "images"))
+
+	// Ruta principal - redirige a aboutUs.html
 	router.GET("/", func(c *gin.Context) {
-		c.File(filepath.Join(staticPath, "index.html"))
+		c.File(filepath.Join(staticPath, "aboutUs.html"))
+	})
+
+	// Rutas específicas para los archivos HTML
+	router.GET("/login", func(c *gin.Context) {
+		c.File(filepath.Join(staticPath, "login.html"))
+	})
+
+	router.GET("/home", func(c *gin.Context) {
+		c.File(filepath.Join(staticPath, "Home.html"))
+	})
+
+	router.GET("/contact", func(c *gin.Context) {
+		c.File(filepath.Join(staticPath, "contact.html"))
 	})
 
 	// Routes - vehicles.
@@ -84,6 +109,8 @@ func NewApp() *App {
 	router.GET("/api/vehicles/:id", vehicleHandler.GetVehicleById)
 	router.PUT("/api/vehicles/:id", vehicleHandler.UpdateVehicle) //fixear
 	router.GET("/api/vehicles/getAll", vehicleHandler.GetAllVehicles)
+	router.POST("/api/vehicles/:id/upload-images", vehicleHandler.UploadVehicleImages)
+	router.PUT("/api/vehicles/:id/update-images", vehicleHandler.UpdateVehicleImages)
 	// Routes - users
 	router.POST("/api/users", userHandler.CreateUser)
 	router.GET("/api/users/:id", userHandler.GetUser)
@@ -91,6 +118,11 @@ func NewApp() *App {
 	router.POST("/api/forgot-password", userHandler.ForgotPassword)
 	router.POST("/api/login", userHandler.LoginUser)
 	router.DELETE("/api/users/:id", userHandler.DeleteUserById)
+
+	// Routes - contacts
+	router.POST("/api/contact", contactHandler.CreateContact)
+	router.GET("/api/contacts", contactHandler.GetAllContacts)
+	router.GET("/api/contacts/:id", contactHandler.GetContactByID)
 
 	router.GET("/health", func(c *gin.Context) {
 		c.String(http.StatusOK, "OK")
@@ -115,6 +147,9 @@ func NewApp() *App {
 		VehicleModel:   &models.Vehicle{},
 		VehicleRepo:    vehicleRepo,
 		VehicleService: vehicleService,
+		ContactHandler: contactHandler,
+		ContactRepo:    contactRepo,
+		ContactService: contactService,
 		Server:         server,
 	}
 }

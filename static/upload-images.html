@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Subir Imágenes - VehículoMarket</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                    "Helvetica Neue", Arial, sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
+
+            .container {
+                background: white;
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                padding: 40px;
+                max-width: 600px;
+                width: 100%;
+            }
+
+            h1 {
+                color: #333;
+                margin-bottom: 10px;
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            .subtitle {
+                color: #666;
+                text-align: center;
+                margin-bottom: 30px;
+                font-size: 0.95rem;
+            }
+
+            .form-group {
+                margin-bottom: 25px;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 8px;
+                color: #333;
+                font-weight: 600;
+                font-size: 0.95rem;
+            }
+
+            input[type="text"],
+            input[type="file"] {
+                width: 100%;
+                padding: 12px 15px;
+                border: 2px solid #e0e0e0;
+                border-radius: 10px;
+                font-size: 1rem;
+                transition: all 0.3s;
+            }
+
+            input[type="text"]:focus,
+            input[type="file"]:focus {
+                outline: none;
+                border-color: #667eea;
+                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            }
+
+            .file-input-wrapper {
+                position: relative;
+                overflow: hidden;
+                display: inline-block;
+                width: 100%;
+            }
+
+            .file-input-wrapper input[type="file"] {
+                cursor: pointer;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 15px;
+                border: none;
+                border-radius: 10px;
+                font-size: 1rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s;
+                margin-top: 10px;
+            }
+
+            .btn-primary {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            }
+
+            .btn-primary:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+                transform: none;
+            }
+
+            .btn-secondary {
+                background: #f3f4f6;
+                color: #374151;
+            }
+
+            .btn-secondary:hover {
+                background: #e5e7eb;
+            }
+
+            .result {
+                margin-top: 30px;
+                padding: 20px;
+                border-radius: 10px;
+                display: none;
+            }
+
+            .result.success {
+                background: #d1fae5;
+                border: 2px solid #10b981;
+                color: #065f46;
+            }
+
+            .result.error {
+                background: #fee2e2;
+                border: 2px solid #ef4444;
+                color: #991b1b;
+            }
+
+            .result h3 {
+                margin-bottom: 10px;
+                font-size: 1.1rem;
+            }
+
+            .result p {
+                margin: 5px 0;
+                font-size: 0.9rem;
+            }
+
+            .preview-container {
+                margin-top: 20px;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 10px;
+            }
+
+            .preview-image {
+                width: 100%;
+                height: 120px;
+                object-fit: cover;
+                border-radius: 8px;
+                border: 2px solid #e0e0e0;
+            }
+
+            .loading {
+                display: none;
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .loading.active {
+                display: block;
+            }
+
+            .spinner {
+                border: 4px solid #f3f3f3;
+                border-top: 4px solid #667eea;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                animation: spin 1s linear infinite;
+                margin: 0 auto;
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .info-box {
+                background: #eff6ff;
+                border: 2px solid #3b82f6;
+                border-radius: 10px;
+                padding: 15px;
+                margin-bottom: 25px;
+            }
+
+            .info-box h3 {
+                color: #1e40af;
+                margin-bottom: 8px;
+                font-size: 1rem;
+            }
+
+            .info-box p {
+                color: #1e40af;
+                font-size: 0.9rem;
+                margin: 5px 0;
+            }
+
+            .back-link {
+                display: inline-block;
+                margin-top: 20px;
+                color: #667eea;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s;
+            }
+
+            .back-link:hover {
+                color: #764ba2;
+                transform: translateX(-5px);
+            }
+
+            @media (max-width: 600px) {
+                .container {
+                    padding: 25px;
+                }
+
+                h1 {
+                    font-size: 1.5rem;
+                }
+
+                .preview-container {
+                    grid-template-columns: repeat(
+                        auto-fill,
+                        minmax(100px, 1fr)
+                    );
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🚗 Subir Imágenes</h1>
+            <p class="subtitle">Agrega imágenes a tu vehículo</p>
+
+            <div class="info-box">
+                <h3>📝 Instrucciones:</h3>
+                <p>1. Ingresa el ID del vehículo (UUID)</p>
+                <p>
+                    2. Selecciona una o más imágenes (jpg, jpeg, png, gif, webp)
+                </p>
+                <p>3. Haz clic en "Subir Imágenes"</p>
+            </div>
+
+            <form id="uploadForm">
+                <div class="form-group">
+                    <label for="vehicleId">ID del Vehículo (UUID):</label>
+                    <input
+                        type="text"
+                        id="vehicleId"
+                        name="vehicleId"
+                        placeholder="Ej: 123e4567-e89b-12d3-a456-426614174000"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="images">Seleccionar Imágenes:</label>
+                    <div class="file-input-wrapper">
+                        <input
+                            type="file"
+                            id="images"
+                            name="images"
+                            accept="image/*"
+                            multiple
+                            required
+                        />
+                    </div>
+                </div>
+
+                <div class="preview-container" id="previewContainer"></div>
+
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    📤 Subir Imágenes
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="window.location.href='/static/RequestVehicle.html'"
+                >
+                    👈 Volver a Vehículos
+                </button>
+            </form>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p style="margin-top: 15px; color: #666">
+                    Subiendo imágenes...
+                </p>
+            </div>
+
+            <div class="result" id="result"></div>
+
+            <a href="/static/RequestVehicle.html" class="back-link"
+                >← Volver al listado</a
+            >
+        </div>
+
+        <script>
+            const uploadForm = document.getElementById("uploadForm");
+            const vehicleIdInput = document.getElementById("vehicleId");
+            const imagesInput = document.getElementById("images");
+            const previewContainer =
+                document.getElementById("previewContainer");
+            const resultDiv = document.getElementById("result");
+            const loadingDiv = document.getElementById("loading");
+            const submitBtn = document.getElementById("submitBtn");
+
+            // Obtener ID del vehículo de la URL si existe
+            const urlParams = new URLSearchParams(window.location.search);
+            const vehicleIdFromUrl = urlParams.get("id");
+            if (vehicleIdFromUrl) {
+                vehicleIdInput.value = vehicleIdFromUrl;
+                console.log(
+                    "🔗 ID del vehículo cargado desde URL:",
+                    vehicleIdFromUrl,
+                );
+            }
+
+            // Preview de imágenes seleccionadas
+            imagesInput.addEventListener("change", function (e) {
+                previewContainer.innerHTML = "";
+                const files = e.target.files;
+
+                if (files.length > 0) {
+                    for (let i = 0; i < files.length; i++) {
+                        const file = files[i];
+                        const reader = new FileReader();
+
+                        reader.onload = function (event) {
+                            const img = document.createElement("img");
+                            img.src = event.target.result;
+                            img.className = "preview-image";
+                            img.alt = "Preview";
+                            previewContainer.appendChild(img);
+                        };
+
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
+
+            // Manejo del formulario
+            uploadForm.addEventListener("submit", async function (e) {
+                e.preventDefault();
+
+                const vehicleId = vehicleIdInput.value.trim();
+                const files = imagesInput.files;
+
+                if (!vehicleId || files.length === 0) {
+                    showResult(
+                        "error",
+                        "Error",
+                        "Por favor completa todos los campos",
+                    );
+                    return;
+                }
+
+                // Validar formato UUID
+                const uuidRegex =
+                    /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+                if (!uuidRegex.test(vehicleId)) {
+                    showResult(
+                        "error",
+                        "Error",
+                        "El ID del vehículo no es un UUID válido",
+                    );
+                    return;
+                }
+
+                // Preparar FormData
+                const formData = new FormData();
+                for (let i = 0; i < files.length; i++) {
+                    formData.append("images", files[i]);
+                }
+
+                // Mostrar loading
+                loadingDiv.classList.add("active");
+                submitBtn.disabled = true;
+                resultDiv.style.display = "none";
+
+                try {
+                    const response = await fetch(
+                        `http://localhost:8080/api/vehicles/${vehicleId}/upload-images`,
+                        {
+                            method: "POST",
+                            body: formData,
+                        },
+                    );
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        showResult(
+                            "success",
+                            "✅ Éxito",
+                            `
+                        <p><strong>Imágenes subidas correctamente:</strong></p>
+                        <p>Vehículo ID: ${data.vehicle_id}</p>
+                        <p>Total de imágenes: ${data.total}</p>
+                        <p>Imágenes: ${data.images.join(", ")}</p>
+                    `,
+                        );
+                        uploadForm.reset();
+                        previewContainer.innerHTML = "";
+
+                        // Redirigir después de 3 segundos
+                        setTimeout(() => {
+                            window.location.href =
+                                "/static/RequestVehicle.html";
+                        }, 3000);
+                    } else {
+                        showResult(
+                            "error",
+                            "❌ Error",
+                            data.error || "Error al subir las imágenes",
+                        );
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                    showResult(
+                        "error",
+                        "❌ Error de Conexión",
+                        "No se pudo conectar con el servidor. Verifica que esté funcionando.",
+                    );
+                } finally {
+                    loadingDiv.classList.remove("active");
+                    submitBtn.disabled = false;
+                }
+            });
+
+            function showResult(type, title, message) {
+                resultDiv.className = `result ${type}`;
+                resultDiv.innerHTML = `
+                <h3>${title}</h3>
+                <div>${message}</div>
+            `;
+                resultDiv.style.display = "block";
+            }
+
+            console.log("✅ Upload Images page loaded");
+        </script>
+    </body>
+</html>
